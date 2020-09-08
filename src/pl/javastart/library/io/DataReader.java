@@ -35,4 +35,8 @@ public class DataReader {
     public void close(){
         sc.close();
     }
+
+    public void printNoMeaningInfo(){
+        System.out.println("tekst testowy");
+    }
 }
