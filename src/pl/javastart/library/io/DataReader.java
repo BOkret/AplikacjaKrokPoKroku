@@ -39,4 +39,8 @@ public class DataReader {
     public void testMessage(){
         System.out.println("test nr 2");
     }
+
+    public void printNoMeaningInfo(){
+        System.out.println("tekst testowy");
+    }
 }
