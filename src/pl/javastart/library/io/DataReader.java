@@ -1,35 +1,58 @@
 package pl.javastart.library.io;
 import pl.javastart.library.model.Book;
+import pl.javastart.library.model.Magazine;
 
 import java.util.Scanner;
 
 public class DataReader {
     private Scanner sc = new Scanner(System.in);
+    private ConsolePrinter printer;
 
+    public DataReader(ConsolePrinter printer) {
+        this.printer = printer;
+    }
 
     public Book readAndCreateBook(){
-        System.out.println("Tytuł:");
+        printer.printLine("Tytuł:");
         String title = sc.nextLine();
-        System.out.println("Autor:");
+        printer.printLine("Autor:");
         String author = sc.nextLine();
-        System.out.println("Wydawnictwo:");
+        printer.printLine("Wydawnictwo:");
         String publisher = sc.nextLine();
-        System.out.println("ISBN:");
+        printer.printLine("ISBN:");
         String isbn = sc.nextLine();
-        System.out.println("Rok wydania:");
-        int releaseDate = sc.nextInt();
-        sc.nextLine();
-        System.out.println("Liczba stron:");
-        int pages = sc.nextInt();
-        sc.nextLine();
+        printer.printLine("Rok wydania:");
+        int releaseDate = getInt();
+        printer.printLine("Liczba stron:");
+        int pages = getInt();
+
 
         return new Book(title, author, releaseDate, pages, publisher, isbn);
     }
 
+    public Magazine readAndCreateMagazine(){
+        printer.printLine("Tytuł:");
+        String title = sc.nextLine();
+        printer.printLine("Wydawnictwo:");
+        String publisher = sc.nextLine();
+        printer.printLine("Język:");
+        String language = sc.nextLine();
+        printer.printLine("Rok wydania:");
+        int releaseDate = getInt();
+        printer.printLine("Miesiąc:");
+        int month = getInt();
+        printer.printLine("Dzień:");
+        int day = getInt();
+
+        return new Magazine(title, publisher, language, releaseDate, month, day);
+    }
+
     public int getInt(){
-        int number = sc.nextInt();
-        sc.nextLine();
-        return number;
+        try {
+            return sc.nextInt();
+        } finally {
+            sc.nextLine();
+        }
     }
 
     public void close(){
@@ -37,10 +60,10 @@ public class DataReader {
     }
 
     public void testMessage(){
-        System.out.println("test nr 2");
+        printer.printLine("test nr 2");
     }
 
     public void printNoMeaningInfo(){
-        System.out.println("tekst testowy");
+        printer.printLine("tekst testowy");
     }
 }

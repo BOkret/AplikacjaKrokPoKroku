@@ -1,43 +1,40 @@
 package pl.javastart.library.model;
 
-public class Book {
-    private String title;
+import java.util.Objects;
+
+public class Book extends Publication{
+
     private String author;
-    private int releaseDate;
     private int pages;
-    private String publisher;
     private String isbn;
 
-    public Book(String title, String author, int releaseDate, int pages, String publisher) {
-        this.title = title;
-        this.author = author;
-        this.releaseDate = releaseDate;
-        this.pages = pages;
-        this.publisher = publisher;
-    }
+    public Book(String title, String author, int year, int pages, String publisher, String isbn) {
+        super(title, publisher, year);
 
-    public Book(String title, String author, int releaseDate, int pages, String publisher, String isbn) {
-        this(title, author, releaseDate, pages, publisher);
+        this.pages = pages;
+        this.author = author;
         this.isbn = isbn;
     }
 
-   public void printInfo() {
-        String info = title + "; " + author + "; " + releaseDate + "; "
-                + pages + "; " + publisher + "; ";
-
-        if (isbn != null) {
-            info = info + isbn;
-        }
-
-        System.out.println(info);
+    @Override
+    public String toString() {
+        return super.toString() + "; " + author + "; " + pages + "; " + isbn;
     }
 
-    public String getTitle() {
-        return title;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Book book = (Book) o;
+        return pages == book.pages &&
+                Objects.equals(author, book.author) &&
+                Objects.equals(isbn, book.isbn);
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), author, pages, isbn);
     }
 
     public String getAuthor() {
@@ -48,28 +45,12 @@ public class Book {
         this.author = author;
     }
 
-    public int getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(int releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
     public int getPages() {
         return pages;
     }
 
     public void setPages(int pages) {
         this.pages = pages;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
     }
 
     public String getIsbn() {
