@@ -3,6 +3,7 @@ package pl.javastart.library.model;
 import java.util.Objects;
 
 public class Magazine extends Publication {
+    public final static String TYPE = "MAGAZINE";
     private int month;
     private int day;
     private String language;
@@ -59,5 +60,17 @@ public class Magazine extends Publication {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), month, day, language);
+    }
+
+
+    @Override
+    public String toCSV() {
+        return TYPE + ";" +
+                getTitle() + ";" +
+                getPublisher() +";" +
+                getYear() + ";" +
+                getMonth() + ";" +
+                getDay() + ";" +
+                getLanguage();
     }
 }

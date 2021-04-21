@@ -66,4 +66,8 @@ public class DataReader {
     public void printNoMeaningInfo(){
         printer.printLine("tekst testowy");
     }
+
+    public String getString(){
+        return sc.nextLine();
+    }
 }
